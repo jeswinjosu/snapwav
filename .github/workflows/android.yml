@@ -1,0 +1,70 @@
+name: Android APK
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    env:
+      HAS_SIGNING_KEY: ${{ secrets.SNAPWAV_KEYSTORE_BASE64 != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Build web app into the Android assets
+        working-directory: web
+        run: |
+          npm ci
+          python3 build.py
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Restore release signing key
+        if: env.HAS_SIGNING_KEY == 'true'
+        run: |
+          echo "${{ secrets.SNAPWAV_KEYSTORE_BASE64 }}" | base64 -d > "$RUNNER_TEMP/snapwav-release.p12"
+          echo "SNAPWAV_KEYSTORE=$RUNNER_TEMP/snapwav-release.p12" >> "$GITHUB_ENV"
+
+      - name: Build APK
+        working-directory: android
+        env:
+          SNAPWAV_KEYSTORE_PASSWORD: ${{ secrets.SNAPWAV_KEYSTORE_PASSWORD }}
+          SNAPWAV_KEY_ALIAS: ${{ secrets.SNAPWAV_KEY_ALIAS }}
+          SNAPWAV_KEY_PASSWORD: ${{ secrets.SNAPWAV_KEY_PASSWORD }}
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon assembleRelease
+          VERSION=$(sed -nE "s/.*versionName '([^']+)'.*/\1/p" app/build.gradle)
+          mkdir -p dist
+          cp app/build/outputs/apk/release/app-release.apk "dist/snapwav-$VERSION.apk"
+          echo "APK_PATH=android/dist/snapwav-$VERSION.apk" >> "$GITHUB_ENV"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: snapwav-apk
+          path: ${{ env.APK_PATH }}
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.APK_PATH }}
+          generate_release_notes: true
