@@ -1,0 +1,15 @@
+{
+  "name": "snapwav",
+  "version": "1.3.1",
+  "private": true,
+  "description": "Lightweight, touch-first multitrack audio workstation for Android and the web",
+  "license": "AGPL-3.0-only",
+  "scripts": {
+    "build": "python3 build.py",
+    "serve": "python3 -m http.server 8000 --directory dist/pwa"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "lucide-static": "1.51.0"
+  }
+}

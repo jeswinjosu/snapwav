@@ -1,0 +1,93 @@
+<div id="app" data-tab="arrange">
+  <header class="appbar">
+    <div class="sec-badge" id="sec-badge"><svg class="ic"><use href="#i-audio-lines"/></svg></div>
+    <div class="titles">
+      <button class="proj-name" id="proj-name" title="Rename project">Untitled</button>
+      <div class="proj-sub" id="proj-sub"><span class="save-dot" id="save-dot"></span><b id="sec-name">Arrange</b> · <span id="proj-meta">2 tracks · 0:00</span></div>
+    </div>
+    <button class="ibtn hist" data-hist="undo" title="Undo (Ctrl+Z)" aria-label="Undo" disabled><svg class="ic"><use href="#i-undo-2"/></svg></button>
+    <button class="ibtn hist" data-hist="redo" title="Redo (Ctrl+Shift+Z)" aria-label="Redo" disabled><svg class="ic"><use href="#i-redo-2"/></svg></button>
+  </header>
+
+  <main id="views">
+    <section class="view" id="v-arrange" aria-label="Arrange">
+      <div class="tl-grid">
+        <div class="tl-corner">
+          <button class="ibtn" id="btn-add-track" title="Add track" aria-label="Add track"><svg class="ic"><use href="#i-plus"/></svg></button>
+        </div>
+        <div class="tl-ruler-wrap" id="ruler-wrap"><canvas id="ruler"></canvas></div>
+        <div class="tl-headers" id="tl-headers"><div class="tl-headers-inner" id="tl-headers-inner"></div></div>
+        <div class="tl-canvas-wrap" id="tl-wrap">
+          <canvas id="tl"></canvas>
+          <canvas id="tl-ov"></canvas>
+          <div class="zoom-pill" id="zoom-pill" role="group" aria-label="Zoom">
+            <button class="zp-btn" id="zp-fit" title="Zoom to fit (F)" aria-label="Zoom to fit"><svg class="ic"><use href="#i-maximize-2"/></svg><span>Fit</span></button>
+            <span class="zp-sep" aria-hidden="true"></span>
+            <button class="zp-btn icon" id="zp-out" title="Zoom out (−) · hold to keep zooming" aria-label="Zoom out"><svg class="ic"><use href="#i-zoom-out"/></svg></button>
+            <button class="zp-btn icon" id="zp-in" title="Zoom in (+) · hold to keep zooming" aria-label="Zoom in"><svg class="ic"><use href="#i-zoom-in"/></svg></button>
+          </div>
+          <div class="tl-empty" id="tl-empty" hidden>
+            <div class="big-ic"><svg class="ic lg"><use href="#i-file-music"/></svg></div>
+            <p>Import audio files from your device. Each file lands on its own track at the playhead.</p>
+            <button class="btn primary" id="btn-empty-import"><svg class="ic"><use href="#i-upload"/></svg>Import audio</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="v-mixer" aria-label="Mixer" hidden>
+      <div class="mx">
+        <div class="mx-scroll" id="mx-scroll"><div class="mx-strips" id="mx-strips"></div></div>
+        <div class="mx-master" id="mx-master"></div>
+      </div>
+    </section>
+
+    <section class="view" id="v-fx" aria-label="Effects" hidden>
+      <div class="fx-tracks" id="fx-tracks"></div>
+      <div class="scroll-y" style="flex:1"><div class="pad wrap-max" id="fx-main"></div></div>
+    </section>
+
+    <section class="view" id="v-media" aria-label="Media" hidden>
+      <div class="scroll-y" style="flex:1"><div class="pad wrap-max" id="media-main"></div></div>
+    </section>
+
+    <section class="view" id="v-project" aria-label="Project" hidden>
+      <div class="scroll-y" style="flex:1"><div class="pad wrap-max" id="project-main"></div></div>
+    </section>
+  </main>
+
+  <aside class="side" id="side" aria-label="Tools and playback">
+    <div class="side-top">
+      <span class="label-up" id="side-label">Tools</span>
+      <span class="grow"></span>
+      <button class="ibtn hist" data-hist="undo" title="Undo (Ctrl+Z)" aria-label="Undo" disabled><svg class="ic"><use href="#i-undo-2"/></svg></button>
+      <button class="ibtn hist" data-hist="redo" title="Redo (Ctrl+Shift+Z)" aria-label="Redo" disabled><svg class="ic"><use href="#i-redo-2"/></svg></button>
+    </div>
+    <div class="side-scroll" id="side-scroll">
+      <div class="toolbar" id="toolbar"></div>
+      <div class="side-track" id="side-track"></div>
+    </div>
+
+    <div class="transport" id="transport">
+      <button class="ibtn" id="tp-start" title="Go to start (Home)" aria-label="Go to start"><svg class="ic"><use href="#i-skip-back"/></svg></button>
+      <button class="ibtn tp-wide" id="tp-rew" title="Back 5 seconds" aria-label="Back 5 seconds"><svg class="ic"><use href="#i-rewind"/></svg></button>
+      <button class="ibtn tp-play" id="tp-play" title="Play / Pause (Space)" aria-label="Play"><svg class="ic"><use href="#i-play"/></svg></button>
+      <button class="ibtn" id="tp-stop" title="Stop (Enter)" aria-label="Stop"><svg class="ic"><use href="#i-square"/></svg></button>
+      <button class="ibtn tp-wide" id="tp-ff" title="Forward 5 seconds" aria-label="Forward 5 seconds"><svg class="ic"><use href="#i-fast-forward"/></svg></button>
+      <button class="tp-pos" id="tp-pos" title="Tap to switch elapsed / remaining"><span class="main" id="tp-pos-main">0:00.000</span><span class="alt" id="tp-pos-alt">/ 0:00.000</span></button>
+      <button class="ibtn loop" id="tp-loop" title="Loop (L)" aria-label="Loop"><svg class="ic"><use href="#i-repeat"/></svg></button>
+    </div>
+
+    <nav class="bnav" id="bnav" aria-label="Sections">
+      <span class="bnav-ind still" id="bnav-ind" aria-hidden="true"></span>
+      <button data-tab="arrange" aria-current="page"><span class="pill"><svg class="ic"><use href="#i-audio-lines"/></svg></span>Arrange</button>
+      <button data-tab="mixer"><span class="pill"><svg class="ic"><use href="#i-sliders-vertical"/></svg></span>Mixer</button>
+      <button data-tab="fx"><span class="pill"><svg class="ic"><use href="#i-wand-sparkles"/></svg></span>Effects</button>
+      <button data-tab="media"><span class="pill"><svg class="ic"><use href="#i-library"/></svg></span>Media</button>
+      <button data-tab="project"><span class="pill"><svg class="ic"><use href="#i-folder-open"/></svg></span>Project</button>
+    </nav>
+  </aside>
+</div>
+<div id="toasts" aria-live="polite"></div>
+<input type="file" id="file-audio" accept="audio/*,.wav,.mp3,.ogg,.oga,.opus,.flac,.m4a,.aac,.webm,.aif,.aiff" multiple hidden>
+<input type="file" id="file-project" accept=".zip,.dawproject,application/zip" hidden>
