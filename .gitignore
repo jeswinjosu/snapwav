@@ -1,0 +1,18 @@
+# build output
+web/dist/
+web/node_modules/
+android/build/
+android/dist/
+android/app/build/
+android/.gradle/
+android/.idea/
+android/local.properties
+*.iml
+.DS_Store
+
+# signing keys never belong in the repository
+*.jks
+*.p12
+*.keystore
+*.idsig
+keystore.properties
