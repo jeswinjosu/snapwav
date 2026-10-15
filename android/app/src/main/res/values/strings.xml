@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SnapWav</string>
+    <string name="share_label">Add to SnapWav</string>
+    <string name="open_label">Open in SnapWav</string>
+    <string name="save_failed">Couldn\'t save the file</string>
+</resources>

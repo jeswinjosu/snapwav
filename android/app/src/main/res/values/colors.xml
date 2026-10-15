@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Start-up background in light mode; values-night/colors.xml has the dark one -->
+    <color name="bg">#FFF4F4F5</color>
+    <color name="accent">#FFB53C0B</color>
+    <color name="ic_bg">#FFE3302C</color>
+</resources>
