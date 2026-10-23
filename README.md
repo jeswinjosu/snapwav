@@ -1,10 +1,12 @@
 # SnapWav
 
-A lightweight, touch-first multitrack audio workstation for Android and the web. Arrange your own audio files, give every part its own effects, shape them with volume, pan and intensity curves, and export WAV or MP3.
+A lightweight, touch-first multitrack audio workstation for Android and the web.
+
+Arrange audio clips, edit waveforms, add per-part effects, automate volume and effects with curves, and export your mixes to WAV or MP3. Works offline on Android and keeps your projects and audio files on your device.
 
 **[Download for Android](../../releases/latest)** · **[Open the web app](https://jeswinjosu.github.io/snapwav/)**
 
-Inspired by [yadaw](https://github.com/mlm-games/yadaw), rebuilt from scratch for phones: the navigation sits at the bottom within thumb reach, the interface uses one orange palette taken from the logo in a dark and a light theme, each track keeps its own identifying colour, and the Android app is about 400 KB and works offline.
+Inspired by [yadaw](https://github.com/mlm-games/yadaw), SnapWav is an independent implementation built from scratch for touchscreens. It features a compact interface, dark and light themes, and a lightweight Android app.
 
 | Arrange (dark) | Arrange (light) | Mixer (light) | Effects (dark) |
 |:-:|:-:|:-:|:-:|
@@ -28,7 +30,7 @@ In landscape the tracks take the left side and the tools, track options (as tile
 - **Project** – several sessions saved on your device, undo/redo, autosave, export the mix or stems as WAV (16/24/32-bit float) or MP3 (128–320 kbps) with **?** tips that explain bit depth and sample rate and estimate the file size, session archives (`.snapwav.zip`) and [DAWproject](https://github.com/bitwig/dawproject) import/export.
 - **Layouts** – portrait with the tools, transport and navigation at the bottom; landscape with the tracks on the left and a side panel on the right. Menus slide up from the bottom and close by dragging their holding bar down.
 - **Appearance** – dark and light themes (or follow the phone). Both themes meet WCAG 2.2 AA contrast.
-- **Android** – runs offline; *Share → SnapWav* and *Open with SnapWav* for audio files; system *Save to…* picker for exports; Back button closes menus first; screen stays on during playback; haptics.
+- **Android** – runs offline; *Share → SnapWav* and *Open with SnapWav* for audio files; system *Save to…* picker for exports.
 
 No bundled sounds and no MIDI: SnapWav works on audio you bring.
 
