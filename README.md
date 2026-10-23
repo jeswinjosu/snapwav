@@ -92,4 +92,4 @@ SnapWav is free software: you can redistribute it and/or modify it under the ter
 
 Third-party components and their licenses are listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). SnapWav is an independent implementation inspired by yadaw and contains no yadaw code.
 
-[web]: https://YOUR-USERNAME.github.io/YOUR-REPO/
+[web]: https://jeswinjosu.github.io/snapwav/
